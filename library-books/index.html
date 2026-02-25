@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>library-books</title>
+</head>
+
+<body>
+  <h1>Домашняя библиотека</h1>
+  <div class="app">
+
+    <aside>
+      <h2>Категории</h2>
+      <ul id="categories"></ul>
+    </aside>
+
+    <main>
+      <h2>Книги</h2>
+      <ul id="books"></ul>
+
+      <form id="bookForm">
+        <input id="title" placeholder="Название" required />
+        <input id="author" placeholder="Автор" required />
+
+        <select id="category"></select>
+
+        <button type="submit">Сохранить</button>
+      </form>
+    </main>
+
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
