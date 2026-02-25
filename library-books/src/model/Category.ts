@@ -6,3 +6,10 @@ export const Category = {
 } as const;
 
 export type Category = typeof Category[keyof typeof Category];
+
+export const CategoryIcons: Record<Category, string> = {
+  Fantasy: "🧙",
+  Detective: "🕵️",
+  Science: "🔬",
+  Novel: "📖"
+};

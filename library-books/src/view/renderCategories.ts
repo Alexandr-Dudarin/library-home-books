@@ -1,23 +1,37 @@
-import { Category } from "../model/Category";
-import "./renderCategories.css";
+import { Category, CategoryIcons } from "../model/Category";
+import type { Book } from "../model/Book";
 
 export function renderCategories(
-  selected: Category | null,
-  onSelect: (category: Category) => void
+    selected: Category | null,
+    books: Book[],
+    onSelect: (category: Category | null) => void
 ) {
-  const ul = document.querySelector<HTMLUListElement>("#categories")!;
-  ul.innerHTML = "";
+    const ul = document.querySelector<HTMLUListElement>("#categories")!;
+    ul.innerHTML = "";
 
-  Object.values(Category).forEach(category => {
-    const li = document.createElement("li");
-    li.textContent = category;
+    const allLi = document.createElement("li");
+    allLi.textContent = `Все (${books.length})`;
 
-    if (category === selected) {
-      li.classList.add("active");
+    if (selected === null) {
+        allLi.classList.add("active");
     }
 
-    li.addEventListener("click", () => onSelect(category));
+    allLi.addEventListener("click", () => onSelect(null));
+    ul.appendChild(allLi);
 
-    ul.appendChild(li);
-  });
+    Object.values(Category).forEach(category => {
+        const li = document.createElement("li");
+
+        const count = books.filter(b => b.category === category).length;
+
+        li.textContent = `${CategoryIcons[category]} ${category} (${count})`;
+
+        if (category === selected) {
+            li.classList.add("active");
+        }
+
+        li.addEventListener("click", () => onSelect(category));
+
+        ul.appendChild(li);
+    });
 }
