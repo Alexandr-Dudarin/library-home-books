@@ -5,8 +5,6 @@ import { initForm, setSubmitMode } from "../view/formView";
 import { Category } from "../model/Category";
 import type { Book } from "../model/Book";
 
-console.log("formView loaded");
-
 export class AppController {
     private selectedCategory: Category | null = null;
     private editingId: string | null = null;
@@ -15,10 +13,19 @@ export class AppController {
     constructor(library: Library) {
         this.library = library;
 
-        initForm(this.handleAddBook);
+        initForm(this.handleAddBook, this.handleCancelEdit);
+
         setSubmitMode(false);
 
         this.render();
+    }
+
+    private handleCancelEdit = () => {
+        this.editingId = null;
+        setSubmitMode(false);
+
+        const form = document.querySelector<HTMLFormElement>("#bookForm")!;
+        form.reset();
     }
 
     private handleCategorySelect = (category: Category | null) => {
@@ -29,10 +36,13 @@ export class AppController {
     private handleEditBook = (book: Book) => {
         this.editingId = book.id;
 
-        (document.querySelector("#title") as HTMLInputElement).value = book.title;
-        (document.querySelector("#author") as HTMLInputElement).value = book.author;
-        (document.querySelector("#category") as HTMLSelectElement).value =
-            book.category;
+        const titleInput = document.querySelector<HTMLInputElement>("#title")!;
+        const authorInput = document.querySelector<HTMLInputElement>("#author")!;
+        const categorySelect = document.querySelector<HTMLSelectElement>("#category")!;
+
+        titleInput.value = book.title;
+        authorInput.value = book.author;
+        categorySelect.value = book.category;
 
         setSubmitMode(true);
     };
@@ -41,7 +51,6 @@ export class AppController {
         if (this.editingId) {
             this.library.update({ id: this.editingId, ...bookData });
             this.editingId = null;
-            setSubmitMode(false);
         } else {
             this.library.add({
                 id: crypto.randomUUID(),
@@ -49,6 +58,7 @@ export class AppController {
             });
         }
 
+        setSubmitMode(false);
         this.render();
     };
 
@@ -60,11 +70,7 @@ export class AppController {
     private render() {
         const allBooks = this.library.getAll();
 
-        renderCategories(
-            this.selectedCategory,
-            allBooks,
-            this.handleCategorySelect
-        );
+        renderCategories(this.selectedCategory, allBooks, this.handleCategorySelect);
 
         const books = this.selectedCategory
             ? this.library.getByCategory(this.selectedCategory)

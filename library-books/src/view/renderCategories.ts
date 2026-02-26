@@ -22,7 +22,7 @@ export function renderCategories(
     Object.values(Category).forEach(category => {
         const li = document.createElement("li");
 
-        const count = books.filter(b => b.category === category).length;
+        const count = books ? books.filter(b => b.category === category).length : 0;
 
         li.textContent = `${CategoryIcons[category]} ${category} (${count})`;
 

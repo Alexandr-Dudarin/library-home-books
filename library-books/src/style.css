@@ -106,3 +106,35 @@ select {
 button:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 768px) {
+  .app {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  aside {
+    order: 2; /* категории ниже main */
+  }
+
+  main {
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    margin: 20px 12px;
+    gap: 12px;
+  }
+
+  input, select, button[type="submit"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #books li, #categories li {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}
