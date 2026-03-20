@@ -1,26 +1,56 @@
-# Домашняя библиотека (library-home-books)
+# 📚 Library Home Books
 
-Приложение для учета книг домашней библиотеки, написанное на TypeScript.
+A simple web application for managing a personal home library.
 
----
-
-## 📚 Возможности
-
-- Добавление новых книг
-- Редактирование существующих книг
-- Удаление книг
-- Фильтрация по категориям
-- Подсчёт количества книг в каждой категории
-- Современный интерфейс с сеткой и карточками
-- Сохранение данных в localStorage
+The app allows users to add, edit, delete, and filter books, with all data stored in localStorage.
 
 ---
 
-## 🛠 Стек технологий
+## 🚀 Demo
+
+https://alexandr-dudarin.github.io/library-home-books/
+
+---
+
+## ✨ Features
+
+- Add new books
+- Edit existing books
+- Delete books
+- Filter books by category
+- Count total number of books
+- Data persistence using localStorage
+
+---
+
+## 🛠️ Tech Stack
 
 - TypeScript
 - Vite
-- HTML / CSS
+- HTML
+- CSS
 - LocalStorage
 
 ---
+
+## 📷 Screenshots
+
+![Library App](./screenshot.png)
+
+---
+
+## 🧠 What I practiced
+
+- CRUD operations (Create, Read, Update, Delete)
+- Working with localStorage
+- Data filtering and rendering
+- Form handling
+- Structuring a small web application
+
+---
+
+## ⚙️ Run locally
+
+```bash
+npm install
+npm run dev
